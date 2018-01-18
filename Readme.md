@@ -2,7 +2,7 @@
 
 TicTacToe is a project written in C# 4.7. The software is used to play the standard Tic Tac Toe game against humans or the computer.
 
-
+[![Build status](https://ci.appveyor.com/api/projects/status/ayllvht5nnoy5lxc?svg=true)](https://ci.appveyor.com/project/SeppPenner/tictactoe)
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/issues)
 [![GitHub forks](https://img.shields.io/github/forks/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/network)
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/stargazers)
