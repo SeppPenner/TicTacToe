@@ -14,7 +14,7 @@ TicTacToe is a project written in C# 4.7. The software is used to play the stand
 
 ## Special thanks
 The tic tac toe code is mainly taken from https://bitbucket.org/wyacteen/tictactoe or http://www.wisamyacteen.com/2012/11/an-artificial-intelligence-example-tic-tac-toe-using-c/.
-Special thanks go to [Wisam Acteen](http://www.wisamyacteen.com/about-me/).
+Special thanks go to [Wisam Y Acteen](http://www.wisamyacteen.com/about-me/).
 
 Change history
 --------------
