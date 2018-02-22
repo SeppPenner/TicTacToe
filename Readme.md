@@ -18,4 +18,5 @@ Special thanks go to [Wisam Y Acteen](http://www.wisamyacteen.com/about-me/).
 
 Change history
 --------------
+* **Version 1.0.0.1 (2018-02-22)** : Added languages.dll.
 * **Version 1.0.0.0 (2018-01-18)** : 1.0 release.
