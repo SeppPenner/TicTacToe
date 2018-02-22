@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using Languages.Implementation;
+using Languages.Interfaces;
 
 namespace TicTacToe
 {
@@ -19,6 +21,8 @@ namespace TicTacToe
         private Thread _mainThread;
         private List<Player> _players;
         private Thread _playerThread;
+        private readonly ILanguageManager _lm = new LanguageManager();
+        private ILanguage _lang;
 
         public TicTacToeForm()
         {
@@ -27,6 +31,8 @@ namespace TicTacToe
             ticTacToePanel.Paint += TicTacToePanel_Paint;
             ticTacToePanel.MouseDoubleClick += TicTacToePanel_MouseDoubleClick;
             FormClosed += Main_FormClosed;
+            InitializeLanguageManager();
+            LoadLanguagesToCombo();
         }
 
         private void LoadTitleAndDescription()
@@ -48,10 +54,10 @@ namespace TicTacToe
             if (_players == null)
                 _players = new List<Player>();
             if (_players.Count > 2)
-                throw new Exception("Must have only 2 players");
+                throw new Exception(_lang.GetWord("MustHaveOnly2Players"));
             if (_players.Count == 1)
                 if (_players[0].PlayerPiece == p.PlayerPiece)
-                    throw new Exception("Players Must have different board pieces");
+                    throw new Exception(_lang.GetWord("MustHaveDifferentBoardPieces"));
             _players.Add(p);
         }
 
@@ -73,8 +79,8 @@ namespace TicTacToe
         private void LaunchGame()
         {
             if (_players.Count != 2)
-                throw new Exception("There must be two players for this game!");
-            _game = new TicTacToeGame(_players[0].PlayerPiece, _players[1].PlayerPiece);
+                throw new Exception(_lang.GetWord("MustHave2Players"));
+            _game = new TicTacToeGame(_players[0].PlayerPiece, _players[1].PlayerPiece, _lang);
             Show();
             ticTacToePanel.Invalidate();
             _mainThread = new Thread(ProcessPlayerMoves);
@@ -124,11 +130,11 @@ namespace TicTacToe
 
         private void ShowEndOfGameMessage(Player lastPlayerToAct)
         {
-            var msg = "Game Over! ";
+            var msg = _lang.GetWord("GameOverMessage");
             if (_game.GameBoard.HasWinner())
-                msg += lastPlayerToAct.Name + " wins!";
+                msg += lastPlayerToAct.Name + _lang.GetWord("PlayerXWins");
             else
-                msg += "It's a draw.";
+                msg += _lang.GetWord("Draw");
             MessageBox.Show(msg);
         }
 
@@ -262,6 +268,32 @@ namespace TicTacToe
         {
             _mainThread?.Abort();
             _playerThread?.Abort();
+        }
+
+        private void ComboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _lm.SetCurrentLanguageFromName(comboBoxLanguage.SelectedItem.ToString());
+        }
+
+        private void InitializeLanguageManager()
+        {
+            _lm.SetCurrentLanguage("de-DE");
+            _lm.OnLanguageChanged += OnLanguageChanged;
+        }
+
+        private void LoadLanguagesToCombo()
+        {
+            foreach (var lang in _lm.GetLanguages())
+                comboBoxLanguage.Items.Add(lang.Name);
+            comboBoxLanguage.SelectedIndex = 0;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs eventArgs)
+        {
+            _lang = _lm.GetCurrentLanguage();
+            labelLanguage.Text = _lang.GetWord("SelectLanguage");
+            gameToolStripMenuItem.Text = _lang.GetWord("GameItem");
+            newGameToolStripMenuItem.Text = _lang.GetWord("NewGame");
         }
     }
 }

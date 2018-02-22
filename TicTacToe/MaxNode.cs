@@ -30,7 +30,6 @@ namespace TicTacToe
             {
                 var b = (Board) Board.Clone();
                 var m = new TicTacToeMove(i, MyPieceLocal);
-
                 b.MakeMove(i, MyPieceLocal);
                 Children.Add(new MinNode(b, this, m));
             }

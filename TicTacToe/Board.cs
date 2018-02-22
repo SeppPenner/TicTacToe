@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Languages.Interfaces;
 
 namespace TicTacToe
 {
@@ -15,6 +16,7 @@ namespace TicTacToe
         private const int ConstRows = 3;
         private const int WinningLength = 3;
         private readonly int[,] _board; // a two-dimensional array representing the game board
+        private static ILanguage _lang;
 
         /// <inheritdoc />
         /// <summary>
@@ -28,8 +30,10 @@ namespace TicTacToe
         ///     A value of 2 indicates an 'O' on the board
         /// </summary>
         /// <param name="gameState">a two-dimensional array representing the game state</param>
-        private Board(int[,] gameState) : this()
+        /// <param name="language">The language to be used</param>
+        private Board(int[,] gameState, ILanguage language) : this(language)
         {
+            _lang = language;
             for (var i = 0; i <= gameState.GetUpperBound(0); i++)
             for (var j = 0; j <= gameState.GetUpperBound(1); j++)
                 _board[i, j] = gameState[i, j];
@@ -38,8 +42,9 @@ namespace TicTacToe
         /// <summary>
         ///     Constructs an empty board
         /// </summary>
-        public Board()
+        public Board(ILanguage language)
         {
+            _lang = language;
             _board = new int[ConstRows, ConstColumns];
         }
 
@@ -73,7 +78,7 @@ namespace TicTacToe
 
         public object Clone()
         {
-            var b = new Board(_board);
+            var b = new Board(_board, _lang);
             return b;
         }
 
@@ -102,7 +107,7 @@ namespace TicTacToe
         public void UndoMove(TicTacToeMove m)
         {
             if (!IsOnBoard(m.Position))
-                throw new InvalidMoveException("Can't undo a move on an invalid square!");
+                throw new InvalidMoveException(_lang.GetWord("CantUndoAMoveOnAnInvalidSquare"));
             // just reset the position
             var p = GetPoint(m.Position);
             _board[p.X, p.Y] = 0;
@@ -285,7 +290,7 @@ namespace TicTacToe
                 case Pieces.O:
                     return Pieces.X;
             }
-            throw new Exception("Invalid piece!");
+            throw new Exception(_lang.GetWord("InvalidPiece"));
         }
 
         /// <summary>

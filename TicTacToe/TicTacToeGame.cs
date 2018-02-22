@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Languages.Interfaces;
 
 namespace TicTacToe
 {
@@ -13,12 +14,13 @@ namespace TicTacToe
         private readonly Stack<TicTacToeMove> _moves;
         private readonly Pieces _player1Piece; // Player 1 uses X and player 2 uses O by default
         private readonly Pieces _player2Piece;
+        private readonly ILanguage _lang;
 
         /// <inheritdoc />
         /// <summary>
         ///     Constructs a new TicTacToeGame using the default board pieces for player one and two
         /// </summary>
-        public TicTacToeGame() : this(Pieces.X, Pieces.O)
+        public TicTacToeGame(ILanguage language) : this(Pieces.X, Pieces.O, language)
         {
         }
 
@@ -27,11 +29,13 @@ namespace TicTacToe
         /// </summary>
         /// <param name="player1Piece">Player one's piece</param>
         /// <param name="player2Piece">Player two's piece</param>
-        public TicTacToeGame(Pieces player1Piece, Pieces player2Piece)
+        /// <param name="language">The language to be used</param>
+        public TicTacToeGame(Pieces player1Piece, Pieces player2Piece, ILanguage language)
         {
+            _lang = language;
             _player1Piece = player1Piece;
             _player2Piece = player2Piece;
-            GameBoard = new Board();
+            GameBoard = new Board(language);
             _moves = new Stack<TicTacToeMove>();
         }
 
@@ -82,9 +86,9 @@ namespace TicTacToe
         private void MakeMove(TicTacToeMove m, Players p)
         {
             if (CurrentPlayerTurn != p)
-                throw new InvalidMoveException("You went out of turn!");
+                throw new InvalidMoveException(_lang.GetWord("OutOfTurn"));
             if (!GameBoard.IsValidSquare(m.Position))
-                throw new InvalidMoveException("Pick a square on the board!");
+                throw new InvalidMoveException(_lang.GetWord("PickASquare"));
             if (!Enum.IsDefined(typeof(Players), p))
                 throw new InvalidEnumArgumentException(nameof(p), (int) p, typeof(Players));
             GameBoard.MakeMove(m.Position, m.Piece);
@@ -101,7 +105,7 @@ namespace TicTacToe
         public void TakeSquare(int position, Players p)
         {
             if (CurrentPlayerTurn != p)
-                throw new InvalidMoveException("You tried to move out of turn!");
+                throw new InvalidMoveException(_lang.GetWord("YouTriedOutOfTurn"));
             if (!GameBoard.IsValidSquare(position))
                 throw new InvalidMoveException();
             GameBoard.MakeMove(position, GetPlayersPiece(p));
