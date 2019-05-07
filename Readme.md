@@ -1,12 +1,13 @@
 # TicTacToe
 
-TicTacToe is a project written in C# 4.7. The software is used to play the standard Tic Tac Toe game against humans or the computer.
+TicTacToe is a project written in C# 4.8. The software is used to play the standard Tic Tac Toe game against humans or the computer.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/ayllvht5nnoy5lxc?svg=true)](https://ci.appveyor.com/project/SeppPenner/tictactoe)
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/issues)
 [![GitHub forks](https://img.shields.io/github/forks/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/network)
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/SeppPenner/TicTacToe/master/License.txt)
+[![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/TicTacToe/badge.svg)](https://snyk.io/test/github/SeppPenner/TicTacToe)
 
 ## Screenshots from the GUI
 ![Screenshot from the GUI](https://github.com/SeppPenner/TicTacToe/blob/master/Screenshot.PNG "Screenshot from the GUI")
@@ -18,5 +19,6 @@ Special thanks go to [Wisam Y Acteen](http://www.wisamyacteen.com/about-me/).
 
 Change history
 --------------
+* **Version 1.0.0.2 (2019-05-07)** : Updated .Net version to 4.8.
 * **Version 1.0.0.1 (2018-02-22)** : Added languages.dll.
 * **Version 1.0.0.0 (2018-01-18)** : 1.0 release.

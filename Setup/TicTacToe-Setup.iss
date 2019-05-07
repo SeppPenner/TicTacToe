@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TicTacToe"
-#define MyAppVersion "1.0.0.1"
+#define MyAppVersion "1.0.0.2"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "TicTacToe.exe"
-#define MyPath "F:\TODO\Unfertig\TicTacToe"
+#define MyPath "C:\Users\tim\Desktop\Updaten_Snyk\TicTacToe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
