@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TicTacToe"
-#define MyAppVersion "1.0.0.2"
+#define MyAppVersion "1.0.1.0"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "TicTacToe.exe"
-#define MyPath "C:\Users\tim\Desktop\Updaten_Snyk\TicTacToe"
+#define MyPath "C:\Users\Tim\Documents\Git\C# und VB\TicTacToe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -20,7 +20,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={commonpf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile={#MyPath}\License.txt
 OutputDir={#MyPath}\Setup
@@ -37,9 +37,9 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyPath}\TicTacToe\bin\Debug\TicTacToe.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\TicTacToe\bin\Debug\Languages.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\TicTacToe\bin\Debug\languages\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyPath}\TicTacToe\bin\Release\TicTacToe.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\TicTacToe\bin\Release\Languages.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\TicTacToe\bin\Release\languages\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
