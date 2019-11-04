@@ -6,7 +6,7 @@ TicTacToe is a project written in C# 4.8. The software is used to play the stand
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/issues)
 [![GitHub forks](https://img.shields.io/github/forks/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/network)
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/SeppPenner/TicTacToe/master/License.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/SeppPenner/TicTacToe/master/License.txt)
 [![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/TicTacToe/badge.svg)](https://snyk.io/test/github/SeppPenner/TicTacToe)
 
 ## Screenshots from the GUI
