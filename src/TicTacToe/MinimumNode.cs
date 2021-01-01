@@ -70,7 +70,7 @@ namespace TicTacToe
         /// <seealso cref="Node"/>
         protected override void Evaluate()
         {
-            this.Value = this.EvaluatorLocal.Evaluate(this.Board, OpponentPieceHelper.GetOpponentPiece(this.MyPieceLocal));
+            this.Value = this.EvaluatorLocal?.Evaluate(this.Board, OpponentPieceHelper.GetOpponentPiece(this.MyPieceLocal)) ?? -1;
         }
     }
 }

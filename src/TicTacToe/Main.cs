@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Main.cs" company="H�mmer Electronics">
+// <copyright file="Main.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
@@ -33,14 +33,14 @@ namespace TicTacToe
         private readonly ILanguageManager languageManager = new LanguageManager();
 
         /// <summary>
-        /// The main thread's cancellation token source.
+        /// The main thread.
         /// </summary>
-        private readonly CancellationTokenSource mainCancellationTokenSource = new CancellationTokenSource();
+        private Thread mainThread;
 
         /// <summary>
-        /// The player thread's cancellation token source.
+        /// The player thread.
         /// </summary>
-        private readonly CancellationTokenSource playerCancellationTokenSource = new CancellationTokenSource();
+        private Thread playerThread;
 
         /// <summary>
         /// The game.
@@ -51,16 +51,6 @@ namespace TicTacToe
         /// The last move.
         /// </summary>
         private TicTacToeMove lastMove;
-
-        /// <summary>
-        /// The main thread.
-        /// </summary>
-        private Thread mainThread;
-
-        /// <summary>
-        /// The player thread.
-        /// </summary>
-        private Thread playerThread;
 
         /// <summary>
         /// The players.
@@ -80,7 +70,6 @@ namespace TicTacToe
             this.InitializeComponent();
             this.LoadTitleAndDescription();
             this.ticTacToePanel.Paint += this.TicTacToePanelPaint;
-            this.ticTacToePanel.MouseDoubleClick += this.TicTacToePanelMouseDoubleClick;
             this.FormClosed += this.MainFormClosed;
             this.InitializeLanguageManager();
             this.LoadLanguagesToCombo();
@@ -135,8 +124,8 @@ namespace TicTacToe
         private void MainFormClosed(object sender, FormClosedEventArgs e)
         {
             // Clean up the threads
-            this.mainCancellationTokenSource.Cancel();
-            this.playerCancellationTokenSource.Cancel();
+            this.mainThread = null;
+            this.playerThread = null;
             Environment.Exit(0);
         }
 
@@ -163,8 +152,9 @@ namespace TicTacToe
             this.game = new TicTacToeGame(this.players[0].PlayerPiece, this.players[1].PlayerPiece, this.language);
             this.Show();
             this.ticTacToePanel.Invalidate();
+            this.ticTacToePanel.MouseDoubleClick += this.TicTacToePanelMouseDoubleClick;
 
-            this.mainThread = new Thread(() => this.ProcessPlayerMoves(this.mainCancellationTokenSource.Token));
+            this.mainThread = new Thread(this.ProcessPlayerMoves);
             this.mainThread.Start();
         }
 
@@ -177,8 +167,8 @@ namespace TicTacToe
         {
             this.lastMove = null;
 
-            this.playerThread = new Thread(() => player.Move(this.game.GameBoard, this.playerCancellationTokenSource.Token));
-            this.playerThread.Start();
+            this.playerThread = new Thread(player.Move);
+            this.playerThread.Start(this.game.GameBoard);
 
             // Register a listener
             player.PlayerMoved += this.PlayerMoved;
@@ -193,30 +183,19 @@ namespace TicTacToe
             player.PlayerMoved -= this.PlayerMoved;
 
             // Kill the thread
-            this.playerCancellationTokenSource.Cancel();
+            this.playerThread = null;
             return player.CurrentMove;
         }
 
         /// <summary>
         /// Applies the player's move to the game board.
         /// </summary>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        private void ProcessPlayerMoves(CancellationToken cancellationToken)
+        private void ProcessPlayerMoves()
         {
             while (!this.game.IsGameOver())
             {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
                 foreach (var iteratorPlayer in this.players)
                 {
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
                     var player = iteratorPlayer;
                     var playerMove = this.GetMoveForPlayer(player);
                     this.game.MakeMove(new TicTacToeMove(playerMove.Position, player.PlayerPiece));
@@ -231,6 +210,8 @@ namespace TicTacToe
 
                     this.ShowEndOfGameMessage(iteratorPlayer);
                     this.FinishGame();
+
+                    return;
                 }
             }
         }
@@ -270,7 +251,7 @@ namespace TicTacToe
         private void FinishGame()
         {
             // Kill the main game driver thread
-            this.mainCancellationTokenSource.Cancel();
+            this.mainThread = null;
 
             // Now un-register the mouse click listener
             this.ticTacToePanel.MouseDoubleClick -= this.TicTacToePanelMouseDoubleClick;
@@ -293,7 +274,7 @@ namespace TicTacToe
         /// <param name="e">The event args.</param>
         private void NewGameToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.mainCancellationTokenSource.Cancel();
+            this.mainThread = null;
             this.LaunchGame();
         }
 
@@ -443,8 +424,8 @@ namespace TicTacToe
         private void TicTacToeFormFormClosing(object sender, FormClosingEventArgs e)
         {
             // Clean up the threads
-            this.mainCancellationTokenSource.Cancel();
-            this.playerCancellationTokenSource.Cancel();
+            this.mainThread = null;
+            this.playerThread = null;
         }
 
         /// <summary>

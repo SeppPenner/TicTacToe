@@ -54,8 +54,7 @@ namespace TicTacToe
         ///     and then triggers the PlayerMoved event.
         /// </summary>
         /// <param name="gameBoard">The board.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        public abstract void Move(object gameBoard, CancellationToken cancellationToken);
+        public abstract void Move(object gameBoard);
 
         /// <summary>
         ///     This is invoked by subclasses to indicate that the player decided on a move.

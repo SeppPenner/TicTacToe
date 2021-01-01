@@ -10,7 +10,6 @@
 namespace TicTacToe
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading;
 
     /// <inheritdoc cref="Player"/>
     /// <summary>
@@ -47,9 +46,8 @@ namespace TicTacToe
         ///     and then triggers the PlayerMoved event.
         /// </summary>
         /// <param name="gameBoard">The board.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
         /// <seealso cref="Player"/>
-        public override void Move(object gameBoard, CancellationToken cancellationToken)
+        public override void Move(object gameBoard)
         {
             // Start listening to clicks
             this.ticTacToeForm.SquareDoubleClicked += this.SquareDoubleClicked;
@@ -57,19 +55,10 @@ namespace TicTacToe
             // Now wait until the user clicks
             while (!this.alreadyMoved)
             {
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    return;
-                }
             }
 
             // Reset the flag
             this.alreadyMoved = false;
-
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return;
-            }
 
             // Raise the PlayerMovedEvent
             this.OnPlayerMoved();

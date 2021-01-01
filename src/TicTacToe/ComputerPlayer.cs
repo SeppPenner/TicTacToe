@@ -11,7 +11,6 @@
 namespace TicTacToe
 {
     using System;
-    using System.Threading;
 
     /// <inheritdoc cref="Player"/>
     /// <summary>
@@ -42,9 +41,8 @@ namespace TicTacToe
         ///  when the computer has found a move
         /// </summary>
         /// <param name="gameBoard">The board.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
         /// <seealso cref="Player"/>
-        public override void Move(object gameBoard, CancellationToken cancellationToken)
+        public override void Move(object gameBoard)
         {
             var b = (Board)gameBoard;
 
@@ -57,22 +55,11 @@ namespace TicTacToe
                 return;
             }
 
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return;
-            }
-
             Node root = new MaximumNode(b, null, null);
             root.MyPiece = this.PlayerPiece;
             root.Evaluator = new EvaluationFunction();
             root.FindBestMove(DefaultSearchDepth);
             this.CurrentMove = root.BestMove;
-
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return;
-            }
-
             this.OnPlayerMoved();
         }
 
