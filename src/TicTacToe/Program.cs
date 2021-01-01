@@ -1,31 +1,46 @@
-using System;
-using System.Windows.Forms;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Hämmer Electronics">
+//   Copyright (c) All rights reserved.
+// </copyright>
+// <summary>
+//   The main program.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace TicTacToe
 {
-    internal static class Program
+    using System;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The main program.
+    /// </summary>
+    public static class Program
     {
         /// <summary>
-        ///     The main entry point for the application.
+        /// The main method.
         /// </summary>
         [STAThread]
-        private static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var f = new TicTacToeForm();
+
             // Create the game players
             // Players can be either human or computer players
             // It does not matter which piece 'X' or 'O' player 1 or two have
             // but they must be different
             // Create a human player
             Player p1 = new HumanPlayer("Joe", Pieces.X, f);
+
             // Create a computer player
             // You can create varying degrees of difficulty by creating computer
             // players that build bigger game trees
             // uncomment desired player and comment all other player 2s
             // create a computer player with the default game tree search depth
             Player p2 = new ComputerPlayer("HAL", Pieces.O);
+
             // Create a computer player that only looks ahead 1 move
             // i.e only considers their immediate move and not any subsequent moves
             // by their opponent. 

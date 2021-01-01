@@ -1,6 +1,6 @@
 # TicTacToe
 
-TicTacToe is a project written in C# 4.8. The software is used to play the standard Tic Tac Toe game against humans or the computer.
+TicTacToe is a project written in Net 5.0. The software is used to play the standard Tic Tac Toe game against humans or the computer.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/ayllvht5nnoy5lxc?svg=true)](https://ci.appveyor.com/project/SeppPenner/tictactoe)
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/issues)
@@ -20,7 +20,4 @@ Special thanks go to [Wisam Y Acteen](http://www.wisamyacteen.com/about-me/).
 Change history
 --------------
 
-* **Version 1.0.1.0 (2019-10-27)** : Updated nuget packages, added GitVersionTask.
-* **Version 1.0.0.2 (2019-05-07)** : Updated .Net version to 4.8.
-* **Version 1.0.0.1 (2018-02-22)** : Added languages.dll.
-* **Version 1.0.0.0 (2018-01-18)** : 1.0 release.
+See the [Changelog](https://github.com/SeppPenner/TicTacToe/blob/master/Changelog.md).

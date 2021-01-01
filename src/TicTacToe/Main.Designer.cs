@@ -69,7 +69,7 @@ namespace TicTacToe
             this.newGameToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
             this.newGameToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.newGameToolStripMenuItem.Text = "New Game";
-            this.newGameToolStripMenuItem.Click += new System.EventHandler(this.NewGameToolStripMenuItem_Click);
+            this.newGameToolStripMenuItem.Click += new System.EventHandler(this.NewGameToolStripMenuItemClick);
             // 
             // comboBoxLanguage
             // 
@@ -79,7 +79,7 @@ namespace TicTacToe
             this.comboBoxLanguage.Name = "comboBoxLanguage";
             this.comboBoxLanguage.Size = new System.Drawing.Size(121, 21);
             this.comboBoxLanguage.TabIndex = 2;
-            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguage_SelectedIndexChanged);
+            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguageSelectedIndexChanged);
             // 
             // labelLanguage
             // 
@@ -102,8 +102,8 @@ namespace TicTacToe
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TicTacToeForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TicTacToeForm_FormClosing);
-            this.Load += new System.EventHandler(this.TicTacToeForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TicTacToeFormFormClosing);
+            this.Load += new System.EventHandler(this.TicTacToeFormLoad);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Identifier>de-DE</Identifier> <!--According to https://msdn.microsoft.com/de-de/library/ee825488(v=cs.20).aspx-->
+	<Name>Deutsch</Name>
+	<Words>
+		<Word>
+			<Key>CantUndoAMoveOnAnInvalidSquare</Key>
+			<Value>Ein ungültiger Zug kann nicht rückgängig gemacht werden.</Value>
+		</Word>
+		<Word>
+			<Key>YouTriedOutOfTurn</Key>
+			<Value>Du warst nicht an der Reihe.</Value>
+		</Word>
+		<Word>
+			<Key>OutOfTurn</Key>
+			<Value>Du bist nicht an der Reihe.</Value>
+		</Word>
+    <Word>
+      <Key>PickASquare</Key>
+      <Value>Bitte ein Quadrat auswählen.</Value>
+    </Word>
+    <Word>
+      <Key>MustHaveOnly2Players</Key>
+      <Value>Es darf nur 2 Spieler geben.</Value>
+    </Word>
+    <Word>
+      <Key>MustHaveDifferentBoardPieces</Key>
+      <Value>Die Spieler müssen unterschiedliche Spielsteine benutzen.</Value>
+    </Word>
+    <Word>
+      <Key>MustHaveExactly2Players</Key>
+      <Value>Es darf nur genau 2 Spieler geben.</Value>
+    </Word>
+    <Word>
+      <Key>GameOverMessage</Key>
+      <Value>Das Spiel ist aus: </Value>
+    </Word>
+    <Word>
+      <Key>PlayerXWins</Key>
+      <Value> gewinnt.</Value>
+    </Word>
+    <Word>
+      <Key>Draw</Key>
+      <Value>Unentschieden</Value>
+    </Word>
+    <Word>
+      <Key>SelectLanguage</Key>
+      <Value>Sprache auswählen</Value>
+    </Word>
+    <Word>
+      <Key>Game</Key>
+      <Value>Spiel</Value>
+    </Word>
+    <Word>
+      <Key>NewGame</Key>
+      <Value>Neues Spiel</Value>
+    </Word>
+  </Words>
+</Language>
