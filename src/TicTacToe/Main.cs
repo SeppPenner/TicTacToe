@@ -137,6 +137,7 @@ namespace TicTacToe
             // Clean up the threads
             this.mainCancellationTokenSource.Cancel();
             this.playerCancellationTokenSource.Cancel();
+            Environment.Exit(0);
         }
 
         /// <summary>
