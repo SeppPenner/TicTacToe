@@ -2,11 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TicTacToe"
-#define MyAppVersion "1.0.1.0"
+#define MyAppVersion "1.0.2.0"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "TicTacToe.exe"
-#define MyPath "C:\Users\Tim\Documents\Git\C# und VB\TicTacToe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -22,10 +21,10 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={commonpf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile={#MyPath}\License.txt
-OutputDir={#MyPath}\Setup
+LicenseFile=..\src\TicTacToe\License.txt
+OutputDir=..\Setup
 OutputBaseFilename=TicTacToe-Setup
-SetupIconFile={#MyPath}\Tic Tac Toe.ico
+SetupIconFile=..\src\TicTacToe\Tic Tac Toe.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -37,9 +36,11 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyPath}\TicTacToe\bin\Release\TicTacToe.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\TicTacToe\bin\Release\Languages.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\TicTacToe\bin\Release\languages\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\src\TicTacToe\bin\Release\net5.0-windows\TicTacToe.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\TicTacToe\bin\Release\net5.0-windows\TicTacToe.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\TicTacToe\bin\Release\net5.0-windows\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\TicTacToe\bin\Release\net5.0-windows\Languages.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\TicTacToe\bin\Release\net5.0-windows\languages\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
