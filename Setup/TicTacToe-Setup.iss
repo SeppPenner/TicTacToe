@@ -36,11 +36,7 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\src\TicTacToe\bin\Release\net5.0-windows\TicTacToe.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\TicTacToe\bin\Release\net5.0-windows\TicTacToe.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\TicTacToe\bin\Release\net5.0-windows\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\TicTacToe\bin\Release\net5.0-windows\Languages.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\TicTacToe\bin\Release\net5.0-windows\languages\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\src\TicTacToe\bin\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
