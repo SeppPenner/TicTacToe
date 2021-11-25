@@ -1,6 +1,6 @@
 # TicTacToe
 
-TicTacToe is a project written in Net 5.0. The software is used to play the standard Tic Tac Toe game against humans or the computer.
+TicTacToe is used to play the standard Tic Tac Toe game against humans or the computer.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/ayllvht5nnoy5lxc?svg=true)](https://ci.appveyor.com/project/SeppPenner/tictactoe)
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/issues)
