@@ -9,6 +9,7 @@
 
 namespace TicTacToe
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -38,6 +39,11 @@ namespace TicTacToe
         /// <seealso cref="Node"/>
         protected override void GenerateChildren()
         {
+            if (this.Board is null)
+            {
+                throw new ArgumentNullException(nameof(this.Board), "The board wasn't initialized properly.");
+            }
+
             var openPositions = this.Board.OpenPositions;
 
             foreach (var i in openPositions)
@@ -70,6 +76,11 @@ namespace TicTacToe
         /// <seealso cref="Node"/>
         protected override void Evaluate()
         {
+            if (this.Board is null)
+            {
+                throw new ArgumentNullException(nameof(this.Board), "The board wasn't initialized properly.");
+            }
+
             this.Value = this.EvaluatorLocal?.Evaluate(this.Board, OpponentPieceHelper.GetOpponentPiece(this.MyPieceLocal)) ?? -1;
         }
     }

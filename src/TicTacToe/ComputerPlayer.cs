@@ -55,9 +55,12 @@ namespace TicTacToe
                 return;
             }
 
-            Node root = new MaximumNode(b, null, null);
-            root.MyPiece = this.PlayerPiece;
-            root.Evaluator = new EvaluationFunction();
+            var root = new MaximumNode(b, null, null)
+            {
+                MyPiece = this.PlayerPiece,
+                Evaluator = new EvaluationFunction()
+            };
+
             root.FindBestMove(DefaultSearchDepth);
             this.CurrentMove = root.BestMove;
             this.OnPlayerMoved();

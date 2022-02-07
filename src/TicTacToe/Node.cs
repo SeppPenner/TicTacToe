@@ -24,22 +24,22 @@ namespace TicTacToe
         /// <summary>
         /// The board that this node represents.
         /// </summary>
-        protected readonly Board Board;
+        protected readonly Board? Board;
 
         /// <summary>
         /// This node's children.
         /// </summary>
-        protected readonly List<Node> Children;
+        protected readonly List<Node> Children = new();
 
         /// <summary>
         /// The move that was made from the parent node that created this node.
         /// </summary>
-        private readonly TicTacToeMove move;
+        private readonly TicTacToeMove? move;
 
         /// <summary>
         /// The child node that represents the best move  for a node.
         /// </summary>
-        private Node bestMoveNode;
+        private Node? bestMoveNode;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Node"/> class.
@@ -47,7 +47,7 @@ namespace TicTacToe
         /// <param name="board">The board that the Node will use to evaluate itself and generate its children</param>
         /// <param name="parent">The parent of this node</param>
         /// <param name="move">The move from the parent's board that generated this node's board</param>
-        protected Node(Board board, Node parent, TicTacToeMove move)
+        protected Node(Board board, Node? parent, TicTacToeMove? move)
         {
             this.Board = board;
             this.move = move;
@@ -91,7 +91,7 @@ namespace TicTacToe
         /// <summary>
         /// Gets the best move from this node's board configuration.
         /// </summary>
-        public TicTacToeMove BestMove => this.bestMoveNode.move;
+        public TicTacToeMove? BestMove => this.bestMoveNode?.move;
 
         /// <summary>
         /// Gets the piece representing the node's piece.
@@ -101,7 +101,7 @@ namespace TicTacToe
         /// <summary>
         /// Gets the evaluation function.
         /// </summary>
-        protected EvaluationFunction EvaluatorLocal { get; private set; }
+        protected EvaluationFunction? EvaluatorLocal { get; private set; }
 
         /// <summary>
         ///     Finds the best move for the node by doing a pseudo-depth-f

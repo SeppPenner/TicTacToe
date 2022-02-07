@@ -32,12 +32,12 @@ namespace TicTacToe
         /// <summary>
         /// An event to listen for a move made by a player.
         /// </summary>
-        public event PlayerMovedHandler PlayerMoved;
+        public event PlayerMovedHandler? PlayerMoved;
 
         /// <summary>
         /// Gets or sets the current move.
         /// </summary>
-        public TicTacToeMove CurrentMove { get; protected set; }
+        public TicTacToeMove? CurrentMove { get; protected set; }
 
         /// <summary>
         ///     Gets the player's piece.
@@ -61,6 +61,11 @@ namespace TicTacToe
         /// </summary>
         protected void OnPlayerMoved()
         {
+            if (this.CurrentMove is null)
+            {
+                return;
+            }
+
             this.PlayerMoved?.Invoke(this, new PlayerMovedArgs(this.CurrentMove));
         }
     }

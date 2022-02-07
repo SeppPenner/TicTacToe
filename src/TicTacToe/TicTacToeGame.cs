@@ -31,7 +31,6 @@ namespace TicTacToe
         /// Player one's piece.
         /// </summary>
         private readonly Pieces player1Piece;
-        
 
         /// <summary>
         /// Player two's piece.
@@ -47,7 +46,6 @@ namespace TicTacToe
         /// Initializes a new instance of the <see cref="TicTacToeGame"/> class.
         /// </summary>
         /// <param name="language">The language.</param>
-        // ReSharper disable once UnusedMember.Global
         public TicTacToeGame(ILanguage language)
             : this(Pieces.X, Pieces.O, language)
         {

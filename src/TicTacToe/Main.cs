@@ -35,32 +35,32 @@ namespace TicTacToe
         /// <summary>
         /// The main thread.
         /// </summary>
-        private Thread mainThread;
+        private Thread? mainThread;
 
         /// <summary>
         /// The player thread.
         /// </summary>
-        private Thread playerThread;
+        private Thread? playerThread;
 
         /// <summary>
         /// The game.
         /// </summary>
-        private TicTacToeGame game;
+        private TicTacToeGame? game;
 
         /// <summary>
         /// The last move.
         /// </summary>
-        private TicTacToeMove lastMove;
+        private TicTacToeMove? lastMove;
 
         /// <summary>
         /// The players.
         /// </summary>
-        private List<Player> players;
+        private readonly List<Player> players = new();
 
         /// <summary>
         /// The language.
         /// </summary>
-        private ILanguage language;
+        private ILanguage? language;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TicTacToeForm"/> class.
@@ -78,7 +78,7 @@ namespace TicTacToe
         /// <summary>
         ///     Used to notify a client that user has double clicked on a game square.
         /// </summary>
-        public event SquareDoubleClickHandler SquareDoubleClicked;
+        public event SquareDoubleClickHandler? SquareDoubleClicked;
 
         /// <summary>
         ///  Add the player as a participant to the game.
@@ -86,10 +86,9 @@ namespace TicTacToe
         /// <param name="player">The player to add.</param>
         public void AddPlayer(Player player)
         {
-            // ReSharper disable once ConvertIfStatementToNullCoalescingAssignment
-            if (this.players == null)
+            if (this.language is null)
             {
-                this.players = new List<Player>();
+                throw new ArgumentNullException(nameof(this.language), "The language wasn't found.");
             }
 
             if (this.players.Count > 2)
@@ -144,6 +143,11 @@ namespace TicTacToe
         /// </summary>
         private void LaunchGame()
         {
+            if (this.language is null)
+            {
+                throw new ArgumentNullException(nameof(this.language), "The language wasn't found.");
+            }
+
             if (this.players.Count != 2)
             {
                 throw new Exception(this.language.GetWord("MustHaveExactly2Players"));
@@ -163,8 +167,13 @@ namespace TicTacToe
         /// </summary>
         /// <param name="player">The player.</param>
         /// <returns>A <see cref="TicTacToeMove"/>.</returns>
-        private TicTacToeMove GetMoveForPlayer(Player player)
+        private TicTacToeMove? GetMoveForPlayer(Player player)
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             this.lastMove = null;
 
             this.playerThread = new Thread(player.Move);
@@ -174,7 +183,7 @@ namespace TicTacToe
             player.PlayerMoved += this.PlayerMoved;
 
             // LastMove is assigned in the player PlayerMoved handler
-            while (this.lastMove == null)
+            while (this.lastMove is null)
             {
             }
 
@@ -192,12 +201,23 @@ namespace TicTacToe
         /// </summary>
         private void ProcessPlayerMoves()
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             while (!this.game.IsGameOver())
             {
                 foreach (var iteratorPlayer in this.players)
                 {
                     var player = iteratorPlayer;
                     var playerMove = this.GetMoveForPlayer(player);
+
+                    if (playerMove?.Position is null)
+                    {
+                        continue;
+                    }
+
                     this.game.MakeMove(new TicTacToeMove(playerMove.Position, player.PlayerPiece));
 
                     // Update the graphics
@@ -222,6 +242,11 @@ namespace TicTacToe
         /// <returns><c>true</c> if the game is over, <c>false</c> else.</returns>
         private bool IsGameOver()
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             return this.game.GameBoard.HasWinner() || this.game.GameBoard.IsDraw();
         }
 
@@ -231,6 +256,16 @@ namespace TicTacToe
         /// <param name="lastPlayerToAct">The last player to act.</param>
         private void ShowEndOfGameMessage(Player lastPlayerToAct)
         {
+            if (this.language is null)
+            {
+                throw new ArgumentNullException(nameof(this.language), "The language wasn't found.");
+            }
+
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             var message = this.language.GetWord("GameOverMessage");
 
             if (this.game.GameBoard.HasWinner())
@@ -285,6 +320,11 @@ namespace TicTacToe
         /// <param name="e">The event args.</param>
         private void TicTacToePanelMouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             var position = this.TranslateMouseClickToPosition(e.X, e.Y);
 
             // We will only process the event and notify any clients of the SquareDoubleClicked
@@ -307,6 +347,11 @@ namespace TicTacToe
         /// <returns>The position on the board as <see cref="int"/>.</returns>
         private int TranslateMouseClickToPosition(int x, int y)
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             var pixelsPerColumn = this.ticTacToePanel.Width / this.game.Columns;
             var pixelsPerRow = this.ticTacToePanel.Height / this.game.Rows;
             var row = y / pixelsPerRow;
@@ -332,6 +377,11 @@ namespace TicTacToe
         /// <param name="graphics">The graphics.</param>
         private void DrawPieces(Graphics graphics)
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             for (var i = 0; i < this.game.Rows * this.game.Columns; i++)
             {
                 var piece = this.game.GameBoard.GetPieceAtPosition(i);
@@ -349,8 +399,12 @@ namespace TicTacToe
         /// <param name="graphics">The graphics.</param>
         private void DrawGrid(Graphics graphics)
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             // Equally space the grid rows
-            // ReSharper disable PossibleLossOfFraction
             float pixelsPerRow = this.ticTacToePanel.Width / this.game.Rows;
             float pixelsPerColumn = this.ticTacToePanel.Height / this.game.Columns;
 
@@ -379,6 +433,11 @@ namespace TicTacToe
         /// <returns>A <see cref="PointF"/> representing the x and y coordinates on the panel the piece should be drawn.</returns>
         private PointF GetPieceDrawingCoordsFromPosition(int position)
         {
+            if (this.game is null)
+            {
+                throw new ArgumentNullException(nameof(this.game), "The game wasn't initialized properly.");
+            }
+
             // xOffset and yOffset are used for small corrections in placing the X and O's on the screen in order to get them centered
             var row = position / this.game.Columns;
             var column = position % this.game.Columns;
@@ -404,7 +463,6 @@ namespace TicTacToe
             var point = this.GetPieceDrawingCoordsFromPosition(position);
             var f = new Font("Arial", 40);
 
-            // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (piece)
             {
                 case Pieces.X:

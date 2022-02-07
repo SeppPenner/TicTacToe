@@ -9,6 +9,7 @@
 
 namespace TicTacToe
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -25,7 +26,7 @@ namespace TicTacToe
         /// <param name="parent">This node's parent.</param>
         /// <param name="move">The move that was made from the parent to lead to this node's board.</param>
         /// <seealso cref="Node"/>
-        public MaximumNode(Board board, Node parent, TicTacToeMove move) : base(board, parent, move)
+        public MaximumNode(Board board, Node? parent, TicTacToeMove? move) : base(board, parent, move)
         {
         }
 
@@ -36,6 +37,11 @@ namespace TicTacToe
         /// <seealso cref="Node"/>
         protected override void GenerateChildren()
         {
+            if (this.Board is null)
+            {
+                throw new ArgumentNullException(nameof(this.Board), "The board wasn't initialized properly.");
+            }
+
             // Create child nodes for each of the available positions 
             var openPositions = this.Board.OpenPositions;
 
@@ -69,6 +75,11 @@ namespace TicTacToe
         /// <seealso cref="Node"/>
         protected override void Evaluate()
         {
+            if (this.Board is null)
+            {
+                throw new ArgumentNullException(nameof(this.Board), "The board wasn't initialized properly.");
+            }
+
             this.Value = this.EvaluatorLocal?.Evaluate(this.Board, this.MyPieceLocal) ?? -1;
         }
     }

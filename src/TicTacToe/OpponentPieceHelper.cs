@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace TicTacToe
 {
     /// <summary>
@@ -24,7 +26,9 @@ namespace TicTacToe
             return yourPiece switch
             {
                 Pieces.X => Pieces.O,
-                Pieces.O => Pieces.X
+                Pieces.O => Pieces.X,
+                Pieces.Empty => throw new NotImplementedException(),
+                _ => throw new NotImplementedException()
             };
         }
     }
