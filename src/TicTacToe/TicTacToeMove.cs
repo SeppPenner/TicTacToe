@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TicTacToeMove.cs" company="Hämmer Electronics">
+// <copyright file="TicTacToeMove.cs" company="Hï¿½mmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
@@ -9,12 +9,9 @@
 
 namespace TicTacToe
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     ///     Represents a Tic Tac Toe move.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class TicTacToeMove
     {
         /// <summary>

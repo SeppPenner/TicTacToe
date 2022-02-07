@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EvaluationFunction.cs" company="Hämmer Electronics">
+// <copyright file="EvaluationFunction.cs" company="Hï¿½mmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
@@ -11,14 +11,11 @@
 
 namespace TicTacToe
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     ///     This class represents a static evaluation function for Tic Tac Toe.
     ///     The value is computed by summing number of game pieces in the rows, columns, and diagonals
     ///     for those rows, columns and diagonals that are still winnable.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class EvaluationFunction
     {
         /// <summary>

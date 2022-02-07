@@ -9,8 +9,6 @@
 
 namespace TicTacToe
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <inheritdoc cref="Player"/>
     /// <summary>
     ///     This class represents a human player.
@@ -21,7 +19,6 @@ namespace TicTacToe
         /// <summary>
         /// The Tic Tac Toe form.
         /// </summary>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         private readonly TicTacToeForm ticTacToeForm;
 
         /// <summary>
@@ -71,7 +68,6 @@ namespace TicTacToe
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The event args.</param>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         private void SquareDoubleClicked(object sender, TicTacToeBoardClickedEventArgs e)
         {
             // Un-register the double clicked event
