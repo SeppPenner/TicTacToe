@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TicTacToeBoardClickedEventArgs.cs" company="Hämmer Electronics">
+// <copyright file="TicTacToeBoardClickedEventArgs.cs" company="HÃ¤mmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
@@ -7,31 +7,28 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TicTacToe
-{
-    using System;
+namespace TicTacToe;
 
+/// <inheritdoc cref="EventArgs"/>
+/// <summary>
+/// The board clicked event args.
+/// </summary>
+/// <seealso cref="EventArgs"/>
+public class TicTacToeBoardClickedEventArgs : EventArgs
+{
     /// <inheritdoc cref="EventArgs"/>
     /// <summary>
-    /// The board clicked event args.
+    /// Initializes a new instance of the <see cref="TicTacToeBoardClickedEventArgs"/> class.
     /// </summary>
+    /// <param name="position">The position.</param>
     /// <seealso cref="EventArgs"/>
-    public class TicTacToeBoardClickedEventArgs : EventArgs
+    public TicTacToeBoardClickedEventArgs(int position)
     {
-        /// <inheritdoc cref="EventArgs"/>
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TicTacToeBoardClickedEventArgs"/> class.
-        /// </summary>
-        /// <param name="position">The position.</param>
-        /// <seealso cref="EventArgs"/>
-        public TicTacToeBoardClickedEventArgs(int position)
-        {
-            this.BoardPosition = position;
-        }
-
-        /// <summary>
-        /// Gets the board position.
-        /// </summary>
-        public int BoardPosition { get; }
+        this.BoardPosition = position;
     }
+
+    /// <summary>
+    /// Gets the board position.
+    /// </summary>
+    public int BoardPosition { get; }
 }

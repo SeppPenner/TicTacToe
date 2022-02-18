@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Pieces.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
@@ -7,26 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TicTacToe
+namespace TicTacToe;
+
+/// <summary>
+/// The pieces enumeration.
+/// </summary>
+public enum Pieces
 {
     /// <summary>
-    /// The pieces enumeration.
+    /// The X piece.
     /// </summary>
-    public enum Pieces
-    {
-        /// <summary>
-        /// The X piece.
-        /// </summary>
-        X,
+    X,
 
-        /// <summary>
-        /// The O piece.
-        /// </summary>
-        O,
+    /// <summary>
+    /// The O piece.
+    /// </summary>
+    O,
 
-        /// <summary>
-        /// The empty piece.
-        /// </summary>
-        Empty
-    }
+    /// <summary>
+    /// The empty piece.
+    /// </summary>
+    Empty
 }

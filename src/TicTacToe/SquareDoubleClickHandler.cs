@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SquareDoubleClickHandler.cs" company="Hämmer Electronics">
+// <copyright file="SquareDoubleClickHandler.cs" company="HÃ¤mmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TicTacToe
-{
-    /// <summary>
-    /// A delegate for the use with the SquareDoubleClickHandler.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">The event args.</param>
-    public delegate void SquareDoubleClickHandler(object sender, TicTacToeBoardClickedEventArgs e);
-}
+namespace TicTacToe;
+
+/// <summary>
+/// A delegate for the use with the SquareDoubleClickHandler.
+/// </summary>
+/// <param name="sender">The sender.</param>
+/// <param name="e">The event args.</param>
+public delegate void SquareDoubleClickHandler(object sender, TicTacToeBoardClickedEventArgs e);

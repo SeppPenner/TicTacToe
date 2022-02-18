@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InvalidMoveException.cs" company="Hämmer Electronics">
+// <copyright file="InvalidMoveException.cs" company="HÃ¤mmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
@@ -7,34 +7,31 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TicTacToe
+namespace TicTacToe;
+
+/// <inheritdoc cref="Exception"/>
+/// <summary>
+///     An exception representing an invalid move
+/// </summary>
+/// <seealso cref="Exception"/>
+public class InvalidMoveException : Exception
 {
-    using System;
+    /// <inheritdoc cref="Exception"/>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InvalidMoveException"/> class.
+    /// </summary>
+    /// <seealso cref="Exception"/>
+    public InvalidMoveException()
+    {
+    }
 
     /// <inheritdoc cref="Exception"/>
     /// <summary>
-    ///     An exception representing an invalid move
+    /// Initializes a new instance of the <see cref="InvalidMoveException"/> class.
     /// </summary>
+    /// <param name="message">The message.</param>
     /// <seealso cref="Exception"/>
-    public class InvalidMoveException : Exception
+    public InvalidMoveException(string message) : base(message)
     {
-        /// <inheritdoc cref="Exception"/>
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidMoveException"/> class.
-        /// </summary>
-        /// <seealso cref="Exception"/>
-        public InvalidMoveException()
-        {
-        }
-
-        /// <inheritdoc cref="Exception"/>
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidMoveException"/> class.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <seealso cref="Exception"/>
-        public InvalidMoveException(string message) : base(message)
-        {
-        }
     }
 }
