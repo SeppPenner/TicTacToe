@@ -60,8 +60,8 @@ public partial class TicTacToeForm : Form
     {
         this.InitializeComponent();
         this.LoadTitleAndDescription();
-        this.ticTacToePanel.Paint += this.TicTacToePanelPaint;
-        this.FormClosed += this.MainFormClosed;
+        this.ticTacToePanel.Paint += this.TicTacToePanelPaint!;
+        this.FormClosed += this.MainFormClosed!;
         this.InitializeLanguageManager();
         this.LoadLanguagesToCombo();
     }
@@ -147,7 +147,7 @@ public partial class TicTacToeForm : Form
         this.game = new TicTacToeGame(this.players[0].PlayerPiece, this.players[1].PlayerPiece, this.language);
         this.Show();
         this.ticTacToePanel.Invalidate();
-        this.ticTacToePanel.MouseDoubleClick += this.TicTacToePanelMouseDoubleClick;
+        this.ticTacToePanel.MouseDoubleClick += this.TicTacToePanelMouseDoubleClick!;
 
         this.mainThread = new Thread(this.ProcessPlayerMoves);
         this.mainThread.Start();
@@ -280,7 +280,7 @@ public partial class TicTacToeForm : Form
         this.mainThread = null;
 
         // Now un-register the mouse click listener
-        this.ticTacToePanel.MouseDoubleClick -= this.TicTacToePanelMouseDoubleClick;
+        this.ticTacToePanel.MouseDoubleClick -= this.TicTacToePanelMouseDoubleClick!;
     }
 
     /// <summary>
@@ -500,7 +500,7 @@ public partial class TicTacToeForm : Form
     private void InitializeLanguageManager()
     {
         this.languageManager.SetCurrentLanguage("de-DE");
-        this.languageManager.OnLanguageChanged += this.OnLanguageChanged;
+        this.languageManager.OnLanguageChanged += this.OnLanguageChanged!;
     }
 
     /// <summary>
