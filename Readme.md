@@ -8,6 +8,9 @@ TicTacToe is used to play the standard Tic Tac Toe game against humans or the co
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/TicTacToe.svg)](https://github.com/SeppPenner/TicTacToe/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/SeppPenner/TicTacToe/master/License.txt)
 [![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/TicTacToe/badge.svg)](https://snyk.io/test/github/SeppPenner/TicTacToe)
+[![Blogger](https://img.shields.io/badge/Follow_me_on-blogger-orange)](https://franzhuber23.blogspot.de/)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?logo=patreon&logoColor=white)](https://patreon.com/SeppPennerOpenSourceDevelopment)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)](https://paypal.me/th070795)
 
 ## Screenshots from the GUI
 ![Screenshot from the GUI](https://github.com/SeppPenner/TicTacToe/blob/master/Screenshot.PNG "Screenshot from the GUI")
