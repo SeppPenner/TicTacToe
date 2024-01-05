@@ -167,7 +167,7 @@ public partial class TicTacToeForm : Form
 
         this.lastMove = null;
 
-        this.playerThread = new Thread(player.Move);
+        this.playerThread = new Thread(player.Move!);
         this.playerThread.Start(this.game.GameBoard);
 
         // Register a listener
@@ -484,7 +484,7 @@ public partial class TicTacToeForm : Form
     /// <param name="e">The event args.</param>
     private void ComboBoxLanguageSelectedIndexChanged(object sender, EventArgs e)
     {
-        var selectedItem = this.comboBoxLanguage.SelectedItem.ToString();
+        var selectedItem = this.comboBoxLanguage.SelectedItem?.ToString();
 
         if (string.IsNullOrWhiteSpace(selectedItem))
         {
